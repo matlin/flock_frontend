@@ -1,0 +1,6 @@
+<div>
+   <form ng-submit="addCrush(newCrush); newCrush = null;">
+      <input ng-model="newCrush" uib-typeahead="user as user.shortname for user in $root.middDatabase | filter:{shortname:$viewValue}" typeahead-min-length="3" type="text" placeholder="Your crush's name" />
+      <input style="background-color:white;border:1px solid;" type="submit" value="Add" />
+   </form>
+</div>

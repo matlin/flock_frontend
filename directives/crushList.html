@@ -1,0 +1,14 @@
+<div class="" id="crushList">
+   <div class="cardHeader">
+      <h2>Crushes</h2>
+   </div>
+   <div class="cardBody" id="crushes">
+      <h4 ng-show="loading">Loading crushes...</h4>
+      <ul>
+         <li ng-class="{match : crush.match}" ng-repeat="crush in crushes">{{crush.name | limitTo: 21}}<span ng-show="crush.name.length > 21">...</span><span ng-click="removeCrush(crush)" class="removeCrush">X</span></li>
+      </ul>
+      <p>You have used {{crushes.length}} of {{crushLimit}} available spots.</p>
+   </div>
+   <button ng-click="saveCrushes()" ng-show="unsaved" id="saveCrushes">Save</button>
+   <button id="addCrush" popover-title="Add a crush" uib-popover-template="'directives/addCrushPopover.html'" popover-placement="left"  popover-trigger="outsideClick">+</button>
+</div>
