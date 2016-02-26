@@ -1,31 +1,25 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>flock</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-<script src="js/jquery.1.9.1.min.js"></script>
+    <title>flock</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<!--
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<script src="js/twitter-typeahead.js"></script>
--->
+    <script src="//www.parsecdn.com/js/parse-1.6.14.min.js"></script>
 
-<script src="//www.parsecdn.com/js/parse-1.6.14.min.js"></script>
-
-
-
-<link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/index.css"/>
 </head>
 <body ng-app="flock">
-    <div class="page-header">
-       <!--V-day logo-->
-       <a href="/#/"><img id="logo" src="logo.png" /></a>
-       <a href="/#/about" id="aboutLink">FAQ</a>
-        <!--<h1>flock. <small>Make it happen.</small></h1>-->
-    </div>
-    <div ng-view="" class="container-fluid">
+<div class="page-header">
+    <!--V-day logo-->
+    <a href="/#/"><img id="logo" src="logo.png"/></a>
+    <a href="/#/about" id="aboutLink">FAQ</a>
+    <!--<h1>flock. <small>Make it happen.</small></h1>-->
+</div>
+<div ui-view class="container-fluid">
     <!--<div class="container col-lg-4 col-md-4 col-sm-12">
         <div class="jumbotron" id="crushList">
             <h3 class="col-sm-12 col-md-12 col-lg-8">Crushes</h3>
@@ -40,63 +34,67 @@
             </ul>
         </div>
     </div>-->
-    
-   </div>
+
+</div>
 
 <script>
     Parse.initialize("W44eai7NJvIVpAIDtKxKcro9ctpeMxSrRgdGHcXS", "7AFFxYDutct715pvhjauYrkkVpb0z3a2TNrTKAyz");
     var url = "Midd_Emails_2016.json";
     console.log("~~~~~Oh you like looking under the hood?~~~~");
-   console.log("~~~~~How about you come help build flock?~~~~");
-   console.log("~~~~~Email me at mlinkous@midd~~~~~");
+    console.log("~~~~~How about you come help build flock?~~~~");
+    console.log("~~~~~Email me at mlinkous@midd~~~~~");
 </script>
 <script>
     //twitter typeahead code
-    var substringMatcher = function(strs) {
+    var substringMatcher = function (strs) {
         return function findMatches(q, cb) {
             var matches, substringRegex;
-        
+
             // an array that will be populated with substring matches
             matches = [];
-        
+
             // regex used to determine if a string contains the substring `q`
             substrRegex = new RegExp(q, 'i');
-        
+
             // iterate through the pool of strings and for any string that
             // contains the substring `q`, add it to the `matches` array
-            $.each(strs, function(i, str) {
-              if (substrRegex.test(i)) {
-                matches.push(i);
-              }
+            $.each(strs, function (i, str) {
+                if (substrRegex.test(i)) {
+                    matches.push(i);
+                }
             });
-    
+
             cb(matches);
         };
     };
-    
-    var addTypeahead = function(selector, array, title){
-            $(selector).typeahead({
-                hint: true,
-                highlight: false,
-                minLength: 1
-            },
-            {
-                name: title,
-                source: substringMatcher(array)
-            });
+
+    var addTypeahead = function (selector, array, title) {
+        $(selector).typeahead({
+                    hint: true,
+                    highlight: false,
+                    minLength: 1
+                },
+                {
+                    name: title,
+                    source: substringMatcher(array)
+                });
     }
 
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/auth0/angular-storage/master/dist/angular-storage.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
-<script src="js/ui-bootstrap-tpls-1.1.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.1.0/ui-bootstrap-tpls.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
-   
+
 <script src="js/index.js"></script>
 <script src="js/directives.js"></script>
 <script src="js/controllers/register.js"></script>
 <script src="js/controllers/dashboard.js"></script>
 <script src="js/controllers/login.js"></script>
-<script src="js/services/midd-events.js"></script>
+<script src="js/services/user.service.js"></script>
+<script src="js/services/crush.service.js"></script>
 </body>
 </html>
