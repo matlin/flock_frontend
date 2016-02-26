@@ -2,7 +2,8 @@
     angular.module('flock').factory('userService', ['$http', '$q', function($http, $q) {
         var service = {};
         service.getStudent = getStudent;
-        service.registerUser = registerUser;
+        service.register = register;
+        service.login = login;
         var students;
 
         $http.get('Midd_Emails_2016.json').success(function(resp) {
@@ -18,7 +19,19 @@
             return null;
         }
 
-        function registerUser(user) {
+        //not sure how/if I want to use this yet
+        //was thinking this might help with the varying defer.reject in register...
+        function handleError(err) {
+            if (err && err.message) {
+                alert("Error: " + err.code + " " + err.message);
+            } else if (err) {
+                alert("Error: " + err);
+            } else {
+                alert("An unexpected error occurred.");
+            }
+        }
+
+        function register(user) {
             var newUser = {};
             var student = getStudent(user.email.toLowerCase());
 
@@ -46,6 +59,22 @@
             } else {
                 defer.reject("Could not register user. Either you used an email not in our system or your passwords did not match.");
             }
+
+            return defer.promise;
+        }
+
+        function login(user) {
+            console.log(user);
+            var defer = $q.defer();
+            $http({
+                url: 'http://localhost:3001/sessions/create',
+                method: 'POST',
+                data: user
+            }).then(function(response) {
+                defer.resolve(response);
+            }, function(error) {
+                defer.reject(error)
+            })
 
             return defer.promise;
         }
