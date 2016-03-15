@@ -4,7 +4,12 @@ angular.module('flock')
                restrict: 'E',
                templateUrl: 'directives/countdownBox.html',
                link: function(scope, elem){
-                  scope.flockoclock = new Date('Feb 25, 2016 12:00:00 GMT-0500');
+                  var now = new Date();
+                  var dayOffset = 4 - now.getDay();
+                  if (dayOffset <= 0) dayOffset += 7;
+                  console.log(dayOffset); 
+                  var nextThurs = new Date(now.getFullYear(), now.getMonth(), now.getDate() + dayOffset, 12);
+                  scope.flockoclock = nextThurs;
                   scope.timeTilMatch = {
                      'days': 0,
                      'hours': 0,
