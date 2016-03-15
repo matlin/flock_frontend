@@ -47,7 +47,7 @@
                 newUser.password = user.pw1;
 
                 $http({
-                    url: 'http://localhost:3001/users',
+                    url: 'http://localhost:5000/register',
                     method: 'POST',
                     data: newUser
                 }).then(function(response) {
@@ -67,7 +67,7 @@
             console.log(user);
             var defer = $q.defer();
             $http({
-                url: 'http://localhost:3001/sessions/create',
+                url: 'http://localhost:5000/authenticate',
                 method: 'POST',
                 data: user
             }).then(function(response) {

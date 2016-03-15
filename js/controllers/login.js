@@ -9,7 +9,7 @@ angular.module('flock').controller('loginCtrl', ['userService', '$uibModalInstan
 
     function login() {
         userService.login(vm.credentials).then(function (resp) {
-            store.set('jwt', resp.data.id_token);
+            store.set('jwt', resp.data.token);
             cancel();
             $state.go('dashboard');
         }, function (reason) {

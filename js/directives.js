@@ -7,7 +7,6 @@ angular.module('flock')
                   var now = new Date();
                   var dayOffset = 4 - now.getDay();
                   if (dayOffset <= 0) dayOffset += 7;
-                  console.log(dayOffset); 
                   var nextThurs = new Date(now.getFullYear(), now.getMonth(), now.getDate() + dayOffset, 12);
                   scope.flockoclock = nextThurs;
                   scope.timeTilMatch = {

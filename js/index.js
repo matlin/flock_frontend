@@ -35,6 +35,7 @@ angular.module('flock', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'angular-jwt'
             if (to.data && to.data.requiresLogin) {
                 if (!store.get('jwt') || jwtHelper.isTokenExpired(store.get('jwt'))) {
                     //prevents state change from happening
+                    window.alert("You must be authenticated to acccess " + to.url);
                     e.preventDefault();
                     $state.go('register');
                 }
