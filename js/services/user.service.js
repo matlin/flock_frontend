@@ -11,10 +11,6 @@
         service.current = getCurrent; 
         var students;
 
-        /*$http.get('Midd_Emails_2016.json').success(function(resp) {
-            students = resp;
-        });*/
-
         function getStudent(email) {
             for (var i = 0; i < students.length; i++) {
                 if (students[i].email == email) {
@@ -139,7 +135,6 @@
         }
 
         function login(user) {
-            console.log(user);
             var defer = $q.defer();
             $http({
                 url: 'http://localhost:5000/authenticate',

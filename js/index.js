@@ -41,10 +41,4 @@ angular.module('flock', ['ui.router', 'ui.bootstrap', 'ngAnimate', 'angular-jwt'
                 }
             }
         });
-    })
-    .run(function ($rootScope) {
-        $.getJSON(url, function (data) {
-            $rootScope.middDatabase = data;
-            //addTypeahead('#studentSearch', middDatabase, "students");
-        });
     });
