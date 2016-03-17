@@ -17,7 +17,7 @@
             userService.register(vm.user)
                 .then(function(response) {
                     alert("Success! You should receive a verification email shortly.");
-                    store.set('jwt', response.data.token);
+                    //store.set('jwt', response.data.token);
                     $state.go('dashboard');
                 }, function(reason) {
                     alert(reason);

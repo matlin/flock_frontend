@@ -1,14 +1,19 @@
 (function() {
-    angular.module('flock').factory('userService', ['$http', '$q', function($http, $q) {
+    angular.module('flock').factory('userService', ['$http', '$q', 'store', function($http, $q, store) {
         var service = {};
         service.getStudent = getStudent;
+        service.getAll = getAll;
         service.register = register;
         service.login = login;
+        service.logout = logout;
+        service.getCrushes = getCrushes;
+        service.updateCrushes = setCrushes;
+        service.current = getCurrent; 
         var students;
 
-        $http.get('Midd_Emails_2016.json').success(function(resp) {
+        /*$http.get('Midd_Emails_2016.json').success(function(resp) {
             students = resp;
-        });
+        });*/
 
         function getStudent(email) {
             for (var i = 0; i < students.length; i++) {
@@ -29,6 +34,68 @@
             } else {
                 alert("An unexpected error occurred.");
             }
+        }
+       
+        function getCurrent(){
+           var tokenData = store.get('jwt');
+           console.log(tokenData);
+           return tokenData;
+        }
+       
+        function getAll(){
+            return $http({
+               url: 'http://localhost:5000/api/middlebury/users',
+               method: 'GET'
+            }).then(
+               function(response){
+                  //TODO: check response code
+                  return response.data.users;
+               },
+               function(error){
+                  return error;
+               }
+            );
+        }
+       
+        function getCrushes(){
+            var currentUser = getCurrent();
+            console.log('Getting crushes for ' + currentUser.username);
+            //maybe make a custom promise here
+            return $http({
+               url: 'http://localhost:5000/api/user/me/crushes',
+               method: 'GET'
+            }).then(
+               function(response){
+                  //TODO: check response code
+                  return response.data;
+               },
+               function(error){
+                  return error;
+               }
+            );
+        }
+       
+        function setCrushes(crushes){
+           //crushes should be an array of emails
+           var currentUser = getCurrent();
+            console.log('Updating crushes for ' + currentUser.username);
+            //maybe make a custom promise here
+           if (typeof crushes[0] === "object"){
+               var crushes = crushes.map(function(crush){return crush.email;});
+           }
+            return $http({
+               url: 'http://localhost:5000/api/user/me/crushes',
+               method: 'POST',
+               data: {'crushes': crushes}
+            }).then(
+               function(response){
+                  //TODO: check response code
+                  return response.data;
+               },
+               function(error){
+                  return error;
+               }
+            );
         }
 
         function register(user) {
@@ -51,6 +118,7 @@
                     method: 'POST',
                     data: newUser
                 }).then(function(response) {
+                    store.set('jwt', response.data.token);
                     defer.resolve(response);
                 }, function(error) {
                     defer.reject(error);
@@ -62,6 +130,12 @@
 
             return defer.promise;
         }
+       
+        function logout(){
+           var currentUser = getCurrent();
+           console.log("Logging out " + currentUser.username);
+           //delete token
+        }
 
         function login(user) {
             console.log(user);
@@ -71,6 +145,7 @@
                 method: 'POST',
                 data: user
             }).then(function(response) {
+                store.set('jwt', response.data.token);
                 defer.resolve(response);
             }, function(error) {
                 defer.reject(error)

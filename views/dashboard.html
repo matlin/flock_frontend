@@ -1,6 +1,8 @@
-<a id="logout" ng-click="logout()">Log out.</a>
-<uib-alert ng-show="emailVerified" close="emailVerified=false" type="success">Your email is now verified. Thanks!</uib-alert>
-<uib-alert type="info"><b>Announcement: </b> We are hiring developers! If you're interested please send an email to contact@myflock.io with your experience, desired role, or your resume!</uib-alert>
-<uib-alert ng-show="firstTime"  type="success" close="showLoggedIn()">Thanks for joining flock! Start by building your crush list and at flock o'clock (Thursday at noon) you will be alerted of your matches.</uib-alert>
-<countdown-box></countdown-box>
-<crush-list></crush-list>
+<div ng-controller="dashboardCtrl as vm">
+   <a id="logout" ng-click="vm.logout()">Log out.</a>
+   <uib-alert ng-show="emailVerified" close="emailVerified=false" type="success">Your email is now verified. Thanks!</uib-alert>
+   <uib-alert type="info"><b>Announcement: </b> We are hiring developers! If you're interested please send an email to contact@myflock.io with your experience, desired role, or your resume!</uib-alert>
+   <uib-alert ng-show="firstTime"  type="success" close="showLoggedIn()">Thanks for joining flock! Start by building your crush list and at flock o'clock (Thursday at noon) you will be alerted of your matches.</uib-alert>
+   <countdown-box></countdown-box>
+   <crush-list ng-init="vm.init();"></crush-list>
+</div>
