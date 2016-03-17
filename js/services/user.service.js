@@ -134,6 +134,7 @@
         function logout(){
            var currentUser = getCurrent();
            console.log("Logging out " + currentUser.username);
+           store.storage.remove('jwt');
            //delete token
         }
 

@@ -1,4 +1,4 @@
-(function() {angular.module('flock').controller('dashboardCtrl', ['$scope', '$rootScope', '$location', '$timeout', 'userService', function ($scope, $rootScope, $location, $timeout, userService) {
+(function() {angular.module('flock').controller('dashboardCtrl', ['$scope', '$rootScope', '$location', '$timeout', 'userService', '$state', function ($scope, $rootScope, $location, $timeout, userService, $state) {
    'use strict';
    //exports
    var vm = this;
@@ -37,6 +37,7 @@
    
    function logout(){
       userService.logout();
+      $state.go('register');
    }
    
    function loadCrushes(){
