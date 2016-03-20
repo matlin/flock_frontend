@@ -33,5 +33,11 @@ angular.module('flock')
    return {
       restrict: 'E',
       templateUrl: 'directives/crushList.html',
+      scope: true,
+      link: function(scope, elem){
+         //TODO: needs to update on changes to crushes or hints
+         console.log(scope.vm.crushes);
+         scope.$watchCollection(scope.vm.crushes, function(){console.log('Crush info changed');});
+      }
    }
 });

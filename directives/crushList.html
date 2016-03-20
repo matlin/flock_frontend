@@ -4,9 +4,17 @@
    </div>
    <div class="cardBody" id="crushes">
       <h4 ng-show="loading">Loading crushes...</h4>
-      <ul>
-         <li ng-class="{match : crush.match}" ng-repeat="crush in vm.crushes">{{crush.name | limitTo: 21}}<span ng-show="crush.name.length > 21">...</span><span ng-click="vm.removeCrush(crush)" class="removeCrush">X</span></li>
-      </ul>
+      <ol>
+         <li ng-class="{match : crush.match}" ng-repeat="crush in vm.crushes">
+            <div class="crushCard">
+            {{crush.name | limitTo: 21}}<span ng-show="crush.name.length > 21">...</span><span ng-click="vm.removeCrush(crush)" class="removeCrush">X</span>
+            </div>
+            <div ng-init="open=false" ng-class="{hintOpen : open}" class="hintCard">
+               <input ng-model="crush.hint" placeholder="Enter a hint for your crush." class="hintInput" type="text" value="{{crush.hint}}" ng-change="$parent.$parent.vm.unsaved=true;" />
+               <span ng-click="open=!open" class="hintHandle">Hint</span>
+            </div>
+         </li>
+      </ol>
       <p>You have used {{vm.crushes.length}} of {{vm.crushLimit}} available spots.</p>
    </div>
    <button ng-click="vm.saveCrushes()" ng-show="vm.unsaved" id="saveCrushes">Save</button>

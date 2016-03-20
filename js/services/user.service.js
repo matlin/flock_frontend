@@ -77,7 +77,9 @@
             console.log('Updating crushes for ' + currentUser.username);
             //maybe make a custom promise here
            if (typeof crushes[0] === "object"){
-               var crushes = crushes.map(function(crush){return crush.email;});
+               var crushes = crushes.map(function(crush){
+                  return {email: crush.email, hint: crush.hint};
+               });
            }
             return $http({
                url: 'http://localhost:5000/api/user/me/crushes',

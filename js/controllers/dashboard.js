@@ -45,9 +45,26 @@
          function(data){
             //this filter takes O(n) time where n = length of all users
             console.log("Crushes ", data);
-            vm.crushes = vm.allUsers.filter(function(user){
-               return data.indexOf(user.email) >= 0;
+            var filteredUsers = vm.allUsers.filter(function(user){
+               for (var i=0; i<data.length; i++){
+                  var crushEmail = data[i].email;
+                  if (crushEmail.indexOf(user.email) >= 0){
+                     return true;
+                  }
+               }
+               return false;
             });
+            filteredUsers = filteredUsers.map(function(crush){
+               for (var i=0; i<data.length; i++){
+                  if (crush.email == data[i].email){
+                     crush.hint = data[i].hint;
+                     return crush;
+                  }
+               }
+               return crush;
+            });
+            vm.crushes = filteredUsers;
+            $scope.$watchCollection(vm.crushes, function(){console.log('Crush info changed');});
             //vm.crushes = data;
             console.log("Users crushes :", vm.crushes);
       }, function(error){
