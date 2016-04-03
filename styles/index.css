@@ -5,6 +5,14 @@ body{
     color:#0277BD;
    padding-bottom:100px;
 }
+#logo{
+   box-sizing: content-box;
+   padding:3px;
+   margin-left:15px;
+}
+img#logo:hover {
+    border-bottom: 2px solid white;
+}
 .jumbotron{
    max-width: 600px;
    margin: 0 auto;
@@ -122,10 +130,10 @@ body{
 }
 .hintInput{
     width: 100%;
-    background-color: orange;
+    background-color: white;
     border: 1px solid white;
-    border-radius: 0px;
-    color:white;
+    border-radius: 4px;
+    color:rgba(2, 119, 189, 1);
 }
 .hintOpen{
    top:0px;
