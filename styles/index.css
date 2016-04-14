@@ -52,7 +52,12 @@ img#logo:hover {
     font-size: 18px;
    padding: 10px;
 }
-#crushList{
+#registerPage #countdownBox {
+   background:none;
+   border:none;
+   box-shadow:none;
+}
+#crushList {
     padding: 0px;
     position: relative;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -207,6 +212,9 @@ span.removeCrush:active{
     max-width: 550px;
     padding: 10px;
     border-radius: 8px;
+    border: 1px solid #01579B;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    margin: 10px auto;
 }
 #registerForm .btn{
     background-color:#01579B;
@@ -225,7 +233,8 @@ span.twitter-typeahead {
     width: 100%;
 }
 .jumbotron{
-    background-color: rgba(255,255,255, 0.85);
+    /*background-color: rgba(255,255,255, 0.85);*/
+    background-color: rgba(221,245,254,1.0);
 }
 input {
     border-radius:8px;

@@ -1,13 +1,15 @@
-<div ng-controller="registerCtrl as vm">
+<div id="registerPage" ng-controller="registerCtrl as vm">
     <div class="jumbotron col-lg-8 col-md-8 col-sm-12">
-        <h1>Proctor crushes aren't just for seniors...</h1>
-        <p>Type in your email and password then click register to build your crush list and see who is crushing on you
+       <h1>Start your weekend off right.</h1>
+        <h2>A refreshingly simple and convenient way to broaden and strengthen your relationships.</h2>
+        <p>Type in your university/college email and password then click register to build your crush list and see who is crushing on you
             each
             weekend.</p>
         <form ng-submit="vm.register()" id="registerForm" name="registerForm">
-            <div class="input-group" id="register">
-                <input ng-model="vm.user.email" type="text" name="email" id="studentSearch" class="form-control"
-                       placeholder="Middlebury email" required/>
+            <h4>Get online now</h4>
+            <div class="" id="register">
+               <input ng-model="vm.user.email" type="text" name="email" id="studentSearch" class="form-control"
+                                   placeholder="email ending in .edu" required/>
                 <input ng-model="vm.user.pw1" type="password" min="6" name="password" class="form-control"
                        placeholder="new password" id="password" required/>
                 <input ng-model="vm.user.pw2" type="password" min="6" name="confirm-password" class="form-control"
@@ -15,6 +17,7 @@
                 <input type="submit" value="Register" class="btn btn-lg btn-default"/> <span> <a ng-click="vm.openLogin()">Login
                 as existing user.</a></span>
             </div>
+           <!--<div class="g-recaptcha" data-sitekey="6LclrBwTAAAAAMOSlOIM2i0QLlBb8LCy-44AxDyk"></div>-->`
         </form>
         <countdown-box></countdown-box>
     </div>

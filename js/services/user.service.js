@@ -8,7 +8,8 @@
         service.logout = logout;
         service.getCrushes = getCrushes;
         service.updateCrushes = setCrushes;
-        service.current = getCurrent; 
+        service.current = getCurrent;
+        service.host = 'http://localhost:5000';
         var students;
 
         function getStudent(email) {
@@ -40,7 +41,7 @@
        
         function getAll(){
             return $http({
-               url: 'http://localhost:5000/api/middlebury/users',
+               url: (service.host + '/api/middlebury/users'),
                method: 'GET'
             }).then(
                function(response){
@@ -58,7 +59,7 @@
             console.log('Getting crushes for ' + currentUser.username);
             //maybe make a custom promise here
             return $http({
-               url: 'http://localhost:5000/api/user/me/crushes',
+               url: (service.host + '/api/user/me/crushes'),
                method: 'GET'
             }).then(
                function(response){
@@ -82,7 +83,7 @@
                });
            }
             return $http({
-               url: 'http://localhost:5000/api/user/me/crushes',
+               url: (service.host + '/api/user/me/crushes'),
                method: 'POST',
                data: {'crushes': crushes}
             }).then(
@@ -112,7 +113,7 @@
                 newUser.password = user.pw1;
 
                 $http({
-                    url: 'http://localhost:5000/register',
+                    url: (service.host + '/register'),
                     method: 'POST',
                     data: newUser
                 }).then(function(response) {
@@ -139,7 +140,7 @@
         function login(user) {
             var defer = $q.defer();
             $http({
-                url: 'http://localhost:5000/authenticate',
+                url: (service.host + '/authenticate'),
                 method: 'POST',
                 data: user
             }).then(function(response) {
