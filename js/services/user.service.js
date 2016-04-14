@@ -9,7 +9,8 @@
         service.getCrushes = getCrushes;
         service.updateCrushes = setCrushes;
         service.current = getCurrent;
-        service.host = 'http://localhost:5000';
+        //service.host = 'http://localhost:5000';
+       service.host = 'https://flock-networks-backend.herokuapp.com'
         var students;
 
         function getStudent(email) {
